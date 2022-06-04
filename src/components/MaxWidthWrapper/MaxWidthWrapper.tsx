@@ -1,5 +1,5 @@
 import styled, { StyledComponent } from 'styled-components';
-import { QUERIES } from '../styles/constants';
+import { QUERIES } from '../../styles/constants';
 
 const MaxWidthWrapper = styled.div`
   position: relative;

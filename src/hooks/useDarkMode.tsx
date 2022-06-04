@@ -9,7 +9,13 @@ import {
   COLOR_MODE_KEY,
   INITIAL_COLOR_MODE_CSS_PROP
 } from '../styles/theme/colors';
-export const DarkModeContext = createContext({});
+
+type ContextValue = (string | (() => void) | undefined)[];
+interface IContext extends ContextValue {
+  darkMode: boolean;
+  toggleDarkMode: () => void;
+}
+export const DarkModeContext = createContext<Partial<ContextValue>>([]);
 
 export function DarkModeProvider({
   children

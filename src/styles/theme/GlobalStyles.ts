@@ -22,7 +22,7 @@ html, body {
 }
 :root {
   --font-primary:'Montserrat', sans-serif;
-  --font-secondary: 'Space Mono', monospace;
+  --font-secondary: 'Merriweather', serif;;
 }
 /*
   Typographic tweaks!
