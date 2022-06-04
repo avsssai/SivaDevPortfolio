@@ -7,7 +7,10 @@ import Document, {
   DocumentInitialProps
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import { FallBackStyles, MagicSciptTag } from '../styles/inlineCssVariables';
+import {
+  FallBackStyles,
+  MagicSciptTag
+} from '../styles/theme/inlineCssVariables';
 
 export default class MyDocument extends Document {
   render() {

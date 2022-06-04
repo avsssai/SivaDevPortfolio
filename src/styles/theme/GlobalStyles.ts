@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
  /*
@@ -34,6 +34,7 @@ body {
   -webkit-font-smoothing: antialiased;
   transition: 0.2s background;
   background: var(--color-background);
+  color: var(--color-textSecondary);
 }
 /*
   6. Improve media defaults
