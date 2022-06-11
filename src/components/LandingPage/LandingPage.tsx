@@ -69,7 +69,7 @@ const Side = styled.div`
 
 const ImageSide = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: end;
   flex: 1;
   align-items: center;
 `;

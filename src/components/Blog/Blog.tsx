@@ -1,9 +1,11 @@
+import Link from 'next/link';
 import { PostMeta } from 'pages/_api/api';
 import React from 'react';
+import { ArrowRight } from 'react-feather';
 import styled from 'styled-components';
 import Articles from '../Articles';
 const Wrapper = styled.section`
-  margin: 0px 24px;
+  margin: 2rem 24px 5rem 24px;
 `;
 const BlogHeader = styled.h2`
   font-size: clamp(2rem, 2vw, 36px);
@@ -20,6 +22,17 @@ const FeaturedPosts = styled.h4`
   font-style: italic;
   font-weight: 400;
 `;
+const ReadMoreLink = styled.div`
+  display: flex;
+  gap: 0.2rem;
+  cursor: pointer;
+  & a {
+    color: inherit;
+  }
+  & a:hover {
+    text-decoration: none;
+  }
+`;
 
 const Blog = ({ posts }: { posts: PostMeta[] }): JSX.Element => {
   return (
@@ -27,6 +40,12 @@ const Blog = ({ posts }: { posts: PostMeta[] }): JSX.Element => {
       <BlogHeader>Blog</BlogHeader>
       <FeaturedPosts>Featured Posts</FeaturedPosts>
       <Articles posts={posts} />
+      <ReadMoreLink>
+        <Link href="/blog">Read more blogs</Link>
+        <Link href="/blog">
+          <ArrowRight />
+        </Link>
+      </ReadMoreLink>
     </Wrapper>
   );
 };

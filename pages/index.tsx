@@ -13,7 +13,6 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ posts }: { posts: PostMeta[] }) => {
-  console.log(posts);
   return (
     <div>
       <Header></Header>
