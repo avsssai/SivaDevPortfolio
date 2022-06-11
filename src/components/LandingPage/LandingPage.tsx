@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MapPin } from 'react-feather';
 
 import Bust from '../Bust';
+import { PostMeta } from 'pages/_api/api';
 const Wrapper = styled.section`
   display: flex;
   min-height: min(90vh, 800px);
@@ -10,7 +11,7 @@ const Wrapper = styled.section`
   color: var(--color-textPrimary);
   flex-wrap: wrap;
   align-items: center;
-  @media (max-width: 500px) {
+  @media (max-width: 1100px) {
     flex-direction: column-reverse;
     align-items: center;
   }

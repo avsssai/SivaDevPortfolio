@@ -1,5 +1,7 @@
+import { PostMeta } from 'pages/_api/api';
 import React from 'react';
 import styled from 'styled-components';
+import Articles from '../Articles';
 const Wrapper = styled.section`
   margin: 0px 24px;
 `;
@@ -19,30 +21,12 @@ const FeaturedPosts = styled.h4`
   font-weight: 400;
 `;
 
-const BlogsContainer = styled.div`
-  padding-bottom: 10rem;
-`;
-const BlogTitle = styled.div`
-  font-size: clamp(1rem, 1.5vw, 32px);
-  font-weight: 600;
-`;
-const BlogExcerpt = styled.div`
-  font-size: clamp(1rem, 1.5vw, 18px);
-  color: var(--color-textPrimary);
-  font-family: var(--font-secondary);
-`;
-const Blog = (): JSX.Element => {
+const Blog = ({ posts }: { posts: PostMeta[] }): JSX.Element => {
   return (
     <Wrapper>
       <BlogHeader>Blog</BlogHeader>
       <FeaturedPosts>Featured Posts</FeaturedPosts>
-      <BlogsContainer>
-        <BlogTitle>My First Blog!</BlogTitle>
-        <BlogExcerpt>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum,
-          ullam?
-        </BlogExcerpt>
-      </BlogsContainer>
+      <Articles posts={posts} />
     </Wrapper>
   );
 };

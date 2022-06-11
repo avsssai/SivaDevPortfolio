@@ -10,7 +10,7 @@ import { ServerStyleSheet } from 'styled-components';
 import {
   FallBackStyles,
   MagicSciptTag
-} from '../styles/theme/inlineCssVariables';
+} from '../src/styles/theme/inlineCssVariables';
 
 export default class MyDocument extends Document {
   render() {

@@ -1,7 +1,7 @@
 // import '../styles/globals.css'
 import type { AppProps } from 'next/app';
-import { DarkModeProvider } from '../hooks/useDarkMode';
-import GlobalStyles from '../styles/theme/GlobalStyles';
+import { DarkModeProvider } from '../src/hooks/useDarkMode';
+import GlobalStyles from '../src/styles/theme/GlobalStyles';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
