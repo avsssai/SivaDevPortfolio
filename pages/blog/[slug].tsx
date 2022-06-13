@@ -66,7 +66,6 @@ const BlogContent = styled.div`
   div,
   span,
   code,
-  pre,
   ul {
     margin-bottom: 2rem;
     line-height: 1.5;
@@ -102,6 +101,12 @@ const BlogContent = styled.div`
   h6 > a {
     color: var(--color-textSecondary);
     text-decoration: none;
+  }
+
+  & p,
+  ul,
+  li {
+    font-family: var(--font-secondary);
   }
 `;
 
