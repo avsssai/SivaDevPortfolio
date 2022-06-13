@@ -12,6 +12,7 @@ import TagsComponent from '@/src/components/Tags';
 import Date from '@/src/components/Date';
 import YouTube from '@/src/components/Youtube';
 import Image from 'next/image';
+import Gif from '@/src/components/Gif';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
@@ -130,7 +131,7 @@ export default function PostPage({ post }: { post: MDXPost }) {
             <TagsComponent tags={post.meta.tags} />
           </TitleWrapper>
           <BlogContent>
-            <MDXRemote {...post.source} components={{ YouTube, Image }} />
+            <MDXRemote {...post.source} components={{ YouTube, Image, Gif }} />
           </BlogContent>
         </Content>
       </Layout>
