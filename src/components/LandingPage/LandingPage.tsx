@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { MapPin } from 'react-feather';
 
 import Bust from '../Bust';
-import { PostMeta } from 'pages/_api/api';
+import { PostMeta } from '@/src/api';
 const Wrapper = styled.section`
   display: flex;
   min-height: min(90vh, 800px);

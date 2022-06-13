@@ -5,7 +5,7 @@ import Header from '../src/components/Header';
 import LandingPage from '../src/components/LandingPage';
 import MaxWidthWrapper from '../src/components/MaxWidthWrapper';
 // import path from 'path';
-import { getAllPosts, getSlugs, PostMeta } from 'pages/_api/api';
+import { getAllPosts, getSlugs, PostMeta } from '@/src/api';
 import Footer from '@/src/components/Footer';
 const ApplicationWrapper = styled(MaxWidthWrapper)``;
 

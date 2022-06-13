@@ -4,7 +4,7 @@ import { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'react-feather';
 import styled from 'styled-components';
-import { getAllPosts, PostMeta } from './_api/api';
+import { getAllPosts, PostMeta } from '../src/api';
 
 const BackLink = styled.div`
   display: flex;

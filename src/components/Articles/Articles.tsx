@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PostMeta } from 'pages/_api/api';
+import type { PostMeta } from '@/src/api';
 import styled from 'styled-components';
 import Link from 'next/link';
 import TagsComponent from '../Tags';

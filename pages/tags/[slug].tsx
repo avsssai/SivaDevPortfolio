@@ -4,7 +4,7 @@ import { QUERIES } from '@/src/styles/constants';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
-import { getAllPosts, PostMeta } from 'pages/_api/api';
+import { getAllPosts, PostMeta } from '@/src/api';
 import { ArrowLeft } from 'react-feather';
 import styled from 'styled-components';
 

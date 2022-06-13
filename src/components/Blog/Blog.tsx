@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { PostMeta } from 'pages/_api/api';
+import { PostMeta } from '@/src/api';
 import React from 'react';
 import { ArrowRight } from 'react-feather';
 import styled from 'styled-components';
