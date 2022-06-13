@@ -2,12 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import useDarkMode from '../../hooks/useDarkMode';
 import styled from 'styled-components';
-import { Moon } from 'react-feather';
+import { Moon, Sun } from 'react-feather';
 import bust from '../../assets/bust-2.svg';
 import Link from 'next/link';
 
 export default function Header(): JSX.Element {
   const [darkMode, toggleDarkMode] = useDarkMode();
+  // console.log(darkMode);
   const size = 50;
   return (
     <HeaderWrapper>
@@ -34,9 +35,13 @@ export default function Header(): JSX.Element {
           <Link href="/blog">blog</Link>
         </Item>
         <Item>
-          {/* 
-  // @ts-ignore */}
-          <Moon onClick={toggleDarkMode} />
+          {darkMode === 'light' ? (
+            // @ts-ignore */}
+            <Moon onClick={toggleDarkMode} />
+          ) : (
+            // @ts-ignore */}
+            <Sun onClick={toggleDarkMode} />
+          )}
         </Item>
       </HeaderRightContent>
     </HeaderWrapper>
