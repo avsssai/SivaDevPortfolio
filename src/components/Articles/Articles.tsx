@@ -7,8 +7,10 @@ import Date from '../Date';
 
 const BlogsContainer = styled.div``;
 const BlogTitle = styled.div`
-  font-size: clamp(1.5rem, 1.5vw, 32px);
-  font-weight: 700;
+  /* font-size: clamp(1.5rem, 1.5vw, 32px); */
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.1;
   width: min(100%, 600px);
   & a {
     text-decoration: none;
