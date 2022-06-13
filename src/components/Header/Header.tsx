@@ -35,6 +35,7 @@ const HeaderWrapper = styled.nav`
   justify-content: space-between;
   padding: 1rem 0;
   border-bottom: 1px solid var(--color-textPrimary);
+  margin-bottom: 2rem;
 `;
 const Logo = styled.span`
   font-family: var(--font-secondary);

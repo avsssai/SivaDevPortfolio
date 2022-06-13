@@ -1,19 +1,10 @@
 import Articles from '@/src/components/Articles';
-import MaxWidthWrapper from '@/src/components/MaxWidthWrapper';
-import { QUERIES } from '@/src/styles/constants';
+import Layout from '@/src/components/Layout';
 import { GetStaticProps, NextPage } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'react-feather';
 import styled from 'styled-components';
 import { getAllPosts, PostMeta } from './_api/api';
-
-const BlogWrapper = styled(MaxWidthWrapper)`
-  margin-top: 2rem;
-
-  @media ${QUERIES.tabletAndUp} {
-    margin-top: 5rem;
-  }
-`;
 
 const BackLink = styled.div`
   display: flex;
@@ -37,7 +28,7 @@ interface Props {
 const Blog: NextPage<Props> = ({ posts }) => {
   //   console.log(posts);
   return (
-    <BlogWrapper>
+    <Layout>
       <Content>
         <BackLink>
           <Link href="/">
@@ -47,7 +38,7 @@ const Blog: NextPage<Props> = ({ posts }) => {
         </BackLink>
         <Articles posts={posts} />
       </Content>
-    </BlogWrapper>
+    </Layout>
   );
 };
 

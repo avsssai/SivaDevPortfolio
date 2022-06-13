@@ -2,12 +2,13 @@ import React from 'react';
 import type { PostMeta } from 'pages/_api/api';
 import styled from 'styled-components';
 import Link from 'next/link';
+import TagsComponent from '../Tags';
+import Date from '../Date';
 
 const BlogsContainer = styled.div``;
 const BlogTitle = styled.div`
   font-size: clamp(1.5rem, 1.5vw, 32px);
   font-weight: 700;
-  margin-bottom: 1rem;
   width: min(100%, 600px);
   & a {
     text-decoration: none;
@@ -24,31 +25,10 @@ const BlogExcerpt = styled.div`
 `;
 const BlogWrapper = styled.div`
   margin-bottom: 2rem;
-  width: min(100%, 600px);
-`;
-
-const Tags = styled.div`
   display: flex;
-  gap: 0.825rem;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  gap: 1rem;
   width: min(100%, 600px);
-  flex-wrap: wrap;
-  line-height: 0.8rem;
-  & a {
-    color: inherit;
-    text-decoration: none;
-  }
-  & a:hover {
-    cursor: pointer;
-    text-decoration: underline;
-  }
-`;
-const Tag = styled.div`
-  color: var(--color-textPrimary);
-  font-weight: 300;
-  font-size: clamp(0.8rem, 1.5vw, 1rem);
-  border: 1px dotted white;
-  padding: 0.4rem;
 `;
 
 export default function Articles({
@@ -68,13 +48,8 @@ export default function Articles({
           <BlogTitle>
             <Link href={`/blog/${post.slug}`}>{post.title}</Link>
           </BlogTitle>
-          <Tags>
-            {post.tags.map((tag) => (
-              <Tag key={tag}>
-                <Link href={`/tags/${tag}`}>{tag}</Link>
-              </Tag>
-            ))}
-          </Tags>
+          <Date date={post.date} />
+          <TagsComponent tags={post.tags} />
           <BlogExcerpt>{post.excerpt}</BlogExcerpt>
         </BlogWrapper>
       ))}
