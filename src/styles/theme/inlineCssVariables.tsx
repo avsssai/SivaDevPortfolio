@@ -23,7 +23,6 @@ export function setColorTheme() {
 
   Object.entries(colors).forEach(([name, colorByTheme]) => {
     const cssVarName = `--color-${name}`;
-    console.log(name, colorByTheme);
     const colorValue =
       typeof colorByTheme === 'object' ? colorByTheme[colorMode] : colorByTheme;
     root.style.setProperty(cssVarName, colorValue);

@@ -4,6 +4,7 @@ import useDarkMode from '../../hooks/useDarkMode';
 import styled from 'styled-components';
 import { Moon } from 'react-feather';
 import bust from '../../assets/bust-2.svg';
+import Link from 'next/link';
 
 export default function Header(): JSX.Element {
   const [darkMode, toggleDarkMode] = useDarkMode();
@@ -12,13 +13,26 @@ export default function Header(): JSX.Element {
     <HeaderWrapper>
       <Logo>
         <ImageContainer>
-          <Image src={bust} alt="cartoon of Siva" width={size} height={size} />
+          <Link href="/">
+            <Image
+              src={bust}
+              alt="cartoon of Siva"
+              width={size}
+              height={size}
+            />
+          </Link>
         </ImageContainer>
-        <Name>Siva Sesha Sai</Name>
+        <Name>
+          <Link href="/">Siva Sesha Sai</Link>
+        </Name>
       </Logo>
       <HeaderRightContent>
-        <Item>about</Item>
-        <Item>blog</Item>
+        {/* <Item>
+          <Link href="/about">about</Link>
+        </Item> */}
+        <Item>
+          <Link href="/blog">blog</Link>
+        </Item>
         <Item>
           {/* 
   // @ts-ignore */}
@@ -64,12 +78,24 @@ const HeaderRightContent = styled.div`
   }
 `;
 
-const Name = styled.div``;
+const Name = styled.div`
+  & a {
+    color: inherit;
+    text-decoration: none;
+  }
+`;
 const ImageContainer = styled.div`
   display: none;
+  cursor: pointer;
   @media (min-width: 640px) {
     display: block;
   }
 `;
 
-const Item = styled.span``;
+const Item = styled.span`
+  cursor: pointer;
+  & a {
+    color: inherit;
+    text-decoration: none;
+  }
+`;

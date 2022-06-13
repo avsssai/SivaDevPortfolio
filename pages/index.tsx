@@ -6,6 +6,7 @@ import LandingPage from '../src/components/LandingPage';
 import MaxWidthWrapper from '../src/components/MaxWidthWrapper';
 // import path from 'path';
 import { getAllPosts, getSlugs, PostMeta } from 'pages/_api/api';
+import Footer from '@/src/components/Footer';
 const ApplicationWrapper = styled(MaxWidthWrapper)``;
 
 interface Props {
@@ -20,6 +21,7 @@ const Home: NextPage<Props> = ({ posts }: { posts: PostMeta[] }) => {
         <LandingPage />
         <Blog posts={posts} />
       </ApplicationWrapper>
+      <Footer />
     </div>
   );
 };
