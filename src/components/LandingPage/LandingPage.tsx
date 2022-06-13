@@ -4,6 +4,7 @@ import { MapPin } from 'react-feather';
 
 import Bust from '../Bust';
 import { PostMeta } from '@/src/api';
+import Link from 'next/link';
 const Wrapper = styled.section`
   display: flex;
   min-height: min(90vh, 800px);
@@ -60,6 +61,10 @@ const Button = styled.div`
   border: 2px solid var(--color-textPrimary);
   font-weight: 600;
   border-radius: 3px;
+  & a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 const Side = styled.div`
@@ -95,8 +100,12 @@ const LandingPage = () => {
           <MapPin /> Hyderabad, IN
         </Location>
         <Buttons>
-          <Button>gitHub</Button>
-          <Button>twitter</Button>
+          <Button>
+            <Link href="https://github.com/avsssai">gitHub</Link>
+          </Button>
+          <Button>
+            <Link href="https://twitter.com/shiva_seshasai">twitter</Link>
+          </Button>
         </Buttons>
       </Side>
       <ImageSide>
