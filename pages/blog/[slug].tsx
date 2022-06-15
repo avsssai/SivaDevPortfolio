@@ -16,6 +16,7 @@ import Gif from '@/src/components/Gif';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
+import rehypeCodeTitles from 'rehype-code-titles';
 import 'highlight.js/styles/atom-one-dark.css';
 
 interface MDXPost {
@@ -109,6 +110,14 @@ const BlogContent = styled.div`
   li {
     font-family: var(--font-secondary);
   }
+  & .rehype-code-title {
+    background-color: #282c34;
+    color: #abb2bf;
+    padding: 10px 17.66px;
+    border-bottom: 1px solid #abb2bf;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
 `;
 
 export default function PostPage({ post }: { post: MDXPost }) {
@@ -147,6 +156,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       rehypePlugins: [
         rehypeSlug,
         [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+        rehypeCodeTitles,
         rehypeHighlight
       ]
     }
