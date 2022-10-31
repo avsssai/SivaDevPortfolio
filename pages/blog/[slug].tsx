@@ -13,11 +13,14 @@ import Date from '@/src/components/Date';
 import YouTube from '@/src/components/Youtube';
 import Image from 'next/image';
 import Gif from '@/src/components/Gif';
+import ToolTip from '@/src/components/Tooltip/Tooltip';
+import Button from '@/src/components/Button/Button';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeCodeTitles from 'rehype-code-titles';
 import 'highlight.js/styles/atom-one-dark.css';
+import Disqus from '@/src/components/Disqus';
 
 interface MDXPost {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -140,9 +143,18 @@ export default function PostPage({ post }: { post: MDXPost }) {
             <TagsComponent tags={post.meta.tags} />
           </TitleWrapper>
           <BlogContent>
-            <MDXRemote {...post.source} components={{ YouTube, Image, Gif }} />
+            <MDXRemote
+              {...post.source}
+              components={{ YouTube, Image, Gif, ToolTip, Button }}
+            />
           </BlogContent>
         </Content>
+        {/* <Disqus
+          slug={post.meta.slug}
+          title={post.meta.title}
+          url={`http://localhost:3000/blog/${post.meta.slug}`}
+        /> */}
+        {/* <Disqus slug={post.meta.slug} /> */}
       </Layout>
     </>
   );

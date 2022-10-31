@@ -1,0 +1,245 @@
+---
+title: Setting up styled components in a fresh project! 🕺
+tags:
+  - styled components
+  - react
+  - css
+date: 2022-10-25
+publish: true
+excerpt: Setting up styled-components in a fresh project.
+---
+
+## Lets get started with Styled components!
+
+Before we begin, let's just talk about what styled components really is.
+
+**What is styled components?**
+
+Styled components is a [css-in-js](https://css-tricks.com/a-thorough-analysis-of-css-in-js/) solution for styling your application.
+
+It is a way to write css directly in your JavaScript/TypeScript file without creating a separate `.css` or `.module.css` file.
+
+### Okay, but what problems does it solve?
+
+That is an excellent question.
+
+_Styled components_ eases our lives in a bunch of ways
+
+1. As mentioned before we don't have to go away to an separate file while writing css.
+
+2. Modularized css -
+   React is famous for components structure of writing UIs and how each component deals with it's own piece of logic or is passed down from the top from it's parent component, and all these
+   components make up the UI as a whole.
+
+   The modularization of css is important as the styles need to be local to each component so that they don't mess with the styles of another component by mistake.
+
+   The [BEM](https://css-tricks.com/bem-101/) methodology is commonly used to solve this issue.
+
+   The `.module.css` files solve this very issue with or without using the BEM methodology.
+
+   Styled Components inherently provide a neat solution for this problem as the styles are local to the file by default, (There is a method to give global styles too which I shall explain below.)
+
+That's all great, let's see some code!
+
+### _Installing the library_
+
+The first step is to create a react app using the create-react-app command or if you already have a react app running, then to point the command line to that folder.
+
+```
+npx create-react-app [name-of-your-application]
+```
+
+or, if you want to create it with typescript
+
+```
+npx create-react-app [name-of-your-application] --template typescript
+```
+
+<ins>**using npm**</ins>
+
+```
+npm i styled-components
+```
+
+(if you're installing into a TypeScript codebase, add the below line of code as well)
+
+```
+npm i @types/styled-components
+```
+
+<ins>**using yarn**</ins>
+
+```
+yarn add styled-components
+```
+
+(if you're installing into a TypeScript codebase, add the below line of code as well)
+
+```
+yarn add @types/styled-components
+```
+
+Now, in the src/ folder, create a file called as globalStyles.js or globalStyles.ts
+
+This file is where we write our global styles with the help of the API provided by styled-components library.
+
+```
+📦src
+ ┣ 📜App.css
+ ┣ 📜App.js
+ ┣ 📜App.test.js
+ ┣ 📜globalStyles.js <--- this is the file
+ ┣ 📜index.css
+ ┣ 📜index.js
+ ┣ 📜logo.svg
+ ┣ 📜reportWebVitals.js
+ ┗ 📜setupTests.js
+```
+
+Now in that file, add the following contents
+
+```
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyles = createGlobalStyle`
+ /*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  3. Allow percentage-based heights in the application
+*/
+html, body {
+  height: 100%;
+  font-family:'Montserrat', sans-serif;
+}
+:root {
+  --font-primary:'Montserrat', sans-serif;
+  --font-secondary: 'Merriweather', serif;;
+}
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: 0.2s background;
+  background: var(--color-background);
+  color: var(--color-textSecondary);
+}
+/*
+  6. Improve media defaults
+*/
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  7. Remove built-in form typography styles
+*/
+input, button, textarea, select {
+  font: inherit;
+}
+/*
+  8. Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+/*
+  9. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+`;
+
+export default GlobalStyles;
+
+
+```
+
+Let's break down the above file's contents
+
+This css reset was taken from [Josh Comeau's custom css reset](https://www.joshwcomeau.com/css/custom-css-reset/), please follow him if you don't already.
+
+Styled components gives us a way to define global styles css using the `createGlobalStyles` hook.
+
+We wrap all the css reset code in it and export it out of the file.
+
+Now, inside index.js/index.ts, drop in the `<GlobalStyles />` tag as below
+
+```ts
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import GlobalStyles from './globalStyles';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <GlobalStyles />
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+```
+
+Now, all the css default resets should kick in, you can add all sorts of other logic like custom css variables which are global thoroughout the app.
+
+Import the styled-components into your JSX/TSX file and you should get the full power of styled-components available to use.
+
+```
+import styled from 'styled-components'
+```
+
+Let's see how you can style a button for example,
+
+```
+// Button.tsx
+
+import styled from 'styled-components';
+const Button = styled.button`
+  background: transparent;
+  border-radius: 3px;
+  border: 2px solid palevioletred;
+
+  margin:  1em;
+  padding: 0.25em 1em;
+  cursor: pointer;
+  background: palevioletred;
+  color: white;
+`;
+
+export default function ButtonComponent({ children }: { children: string }) {
+  return (
+    <>
+      <Button>{children}</Button>
+    </>
+  );
+}
+
+```
+
+The above code renders a button like this
+
+<Button>Click Me!</Button>
+
+Play around with styled components by reacreating an existing design to know its full powers and go ahead and read the [documentation](https://styled-components.com/) to know everything you can do with this
+amazing library.
