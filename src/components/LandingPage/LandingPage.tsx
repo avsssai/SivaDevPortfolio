@@ -104,7 +104,7 @@ const LandingPage = () => {
             <Link href="https://github.com/avsssai">gitHub</Link>
           </Button>
           <Button>
-            <Link href="https://twitter.com/shiva_seshasai">twitter</Link>
+            <Link href="https://twitter.com/sivasdevtwt">twitter</Link>
           </Button>
         </Buttons>
       </Side>
