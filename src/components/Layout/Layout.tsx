@@ -5,6 +5,7 @@ import Footer from '../Footer';
 
 const Wrapper = styled(MaxWidthWrapper)`
   min-height: calc(100vh - 240px);
+  margin-bottom: 3rem;
 `;
 interface Props {
   children: JSX.Element | JSX.Element[];

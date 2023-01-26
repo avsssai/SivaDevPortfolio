@@ -1,0 +1,33 @@
+---
+title: Easiest way to make responsive containers 🍱
+tags:
+  - css
+date: 2022-11-02
+publish: false
+excerpt: Easiest way to make responsive containers using CSS grid.
+---
+
+CSS Grid has become a game changer ever since it's been introduced in CSS.
+
+It is the defacto CSS algorithm to position elements in a 2D layout.
+
+I know I know, before you pick up your pitchforks or worse - close this tab. I shall mention Flexbox.
+
+Flexbox is an excellent tool which has the capacity to render elements when we take a 2D layout problem, but it is limited. It is limited cause we have to consider
+both the axes to make it work and then some.
+
+(The combination of Flexbox for Grid is the sweet mid point for fine grained control in both 2D and respective 1D in those 2D layouts.)
+
+Pardon the rabbit hole, onto the topic at hand.
+
+That's right, Easy responsive containers with CSS grid.
+
+We relied heavily on media queries to write responsive queries, let's look at a use case for better understanding.
+
+_The problem_
+
+Suppose we have a layout where there are a set of cards, and we wanna write some css logic so that they automatically grow and shrik with the screen size.
+
+let's first do it this with **media querie**, without using any CSS grid.
+
+<Image src="/public/responsive.png" width={1703} height={980} />

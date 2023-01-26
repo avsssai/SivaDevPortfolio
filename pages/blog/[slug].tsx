@@ -20,7 +20,13 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeCodeTitles from 'rehype-code-titles';
 import 'highlight.js/styles/atom-one-dark.css';
+// import ImageInsert from '@/src/components/ImageInsert';
+
 import Disqus from '@/src/components/Disqus';
+import dynamic from 'next/dist/shared/lib/dynamic';
+const ImageInsert = dynamic(() => import('@/src/components/ImageInsert'), {
+  ssr: false
+});
 
 interface MDXPost {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -145,7 +151,7 @@ export default function PostPage({ post }: { post: MDXPost }) {
           <BlogContent>
             <MDXRemote
               {...post.source}
-              components={{ YouTube, Image, Gif, ToolTip, Button }}
+              components={{ YouTube, Image, Gif, ToolTip, Button, ImageInsert }}
             />
           </BlogContent>
         </Content>

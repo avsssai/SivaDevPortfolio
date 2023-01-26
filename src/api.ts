@@ -27,7 +27,6 @@ export const getAllPosts = () => {
       return 0;
     })
     .reverse();
-  console.log(sortedPosts.map((post) => post.meta));
   return sortedPosts;
 };
 

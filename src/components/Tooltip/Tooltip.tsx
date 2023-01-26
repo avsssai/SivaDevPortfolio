@@ -30,9 +30,16 @@ const ToolTipWrapper = styled(ContentWrapper)`
 
 const ToolTipLabel = styled.h4`
   text-decoration: underline;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem !important;
 `;
 
 const ToolTipHeading = styled.h6`
-  margin-bottom: 1rem;
+  margin-bottom: 0.1rem !important;
+  font-size: 1rem !important;
 `;
-const ToolTipContent = styled.p``;
+const ToolTipContent = styled.p`
+  font-size: 1rem !important;
+  margin-bottom: 0 !important;
+`;

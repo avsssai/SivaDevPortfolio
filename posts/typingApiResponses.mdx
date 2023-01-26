@@ -1,0 +1,209 @@
+---
+title: Typing API responses 🤝
+tags:
+  - TypeScript
+  - Zod
+date: 2023-01-26
+publish: true
+excerpt: Effective ways to type API responses.
+---
+
+TypeScript introduces types into JavaScript (and more). So you can essentially define the shape of the input which was optional in JavaScript.
+
+Many developers jumped at this idea as it made the developer experience excellent and we are able to catch bugs before they expolode in production.
+
+So in exchange for writing some type logic, you get a lot of predictability in exchange.
+
+<ImageInsert
+  src="/images/typescript_meme.png"
+  width={865}
+  height={932}
+  alt="A meme about typescript"
+/>
+
+Typing inputs and outputs of functions and general code of which we know the input and output of is pretty standard, as we know the shape of those inputs and outputs?
+
+For example, you need to type an API response which you are gonna get from a backend server.
+
+The shape of the API response is not known to you and it's not a good use of the available powerful TypeScript powers to our advantage if we are not typing that response.
+
+## What are the options in hand?
+
+There are 3 options we could use,
+
+1. Typing the API response manually by looking at the API response.
+2. Using a tool which does the job for us. [Like QuickType](https://quicktype.io/)
+3. Using runtime type checking libraries like [Zod](https://www.npmjs.com/package/zod)
+
+let's talk about each of them.
+
+### Typing the API response manually by looking at the API response.
+
+We call an API and we get back a response, we look at the response and type the API response manually using TypeScript native interfaces, types and utility types.
+
+This is an excellent method but we can see the drawbacks of this very easily.
+
+Suppose the API response is a simple JSON with 3-4 fields,
+
+```json
+// API Response
+{
+    {
+    "_id": "63d1de42aa2870548714e2b1",
+    "index": 0,
+    "guid": "9b541f4a-b4dd-4367-8728-c8191ef7fa1c",
+    "isActive": true,
+    "balance": "$3,028.06",
+    "picture": "http://placehold.it/32x32",
+    "age": 26,
+    "eyeColor": "blue",
+    "name": "Woodard Burch",
+    "gender": "male",
+    }
+}
+```
+
+You can type the response like this,
+
+```TypeScript
+interface IAPIResponse {
+    _id: string,
+    index: number,
+    guid: string,
+    isActive: true,
+    balance: string,
+    picture: string,
+    age: number,
+    eyeColor: string,
+    name: string,
+    gender: string
+}
+
+```
+
+This is fine for a small API response like this but if there are hundreds of entries, it grows exponentially difficult and a very tedious process.
+
+This brings us to our second option, using a tool to ask us to do this.
+
+### Using a tool which does the job for us.
+
+[Like QuickType](https://quicktype.io/)
+
+This is a tool which automatically generates API responses for us, so even if you have hundreds of entries in the JSON you can generate types for them in seconds.
+
+All nice and good, but there's some drawbacks of using this as well,
+
+Like,
+
+1. The API response might change it's shape.
+2. The type checking is compile-time.
+3. Additional and complex type shenanigans to do if we need only parts of the API.
+
+Luckily for us, there is some additional tooling which can take of the problems listed above.
+
+The third option,
+
+### Using runtime type checking libraries like ✨Zod✨
+
+[Link to Zod docs](https://www.npmjs.com/package/zod)
+
+<ToolTip
+  heading="What is Zod?"
+  content="Zod is a TypeScript-first schema declaration and validation library. And definitely not the Superman villain with the same name."
+/>
+
+<Gif id="H0F6bfpURFHWdnWEEH" />
+
+Now that we are clear, let's see how Zod is used to type API responses.
+
+Suppose we are consuming the [Pokemon API](https://pokeapi.co/), and let's get the response for the pokemon [Pikachu](https://pokeapi.co/api/v2/pokemon/pikachu).The API response is HUGEE.
+
+Let's assume that we only need 3-4 declarations, like the `name` of the Pokemon, it's `id`, `height`,`weight` and `abilities`.
+
+Using Zod, we can infer the types like this,
+
+```TypeScript
+// types/PokeAPITypes.ts
+import { z } from "zod";
+
+export const PokeRes = z.object({
+	abilities: z.array(
+		z.object({
+			ability: z.object({
+				name: z.string(),
+			}),
+		})
+	),
+	height: z.number(),
+	id: z.number(),
+	name: z.string(),
+	weight: z.number(),
+});
+
+export type PokemonAPIResponse = z.infer<typeof PokeRes>;
+```
+
+Let me explain what the above code does,
+We first import `z` from `zod`, we can use the Zod package api to construct types.
+
+I recommend going through the docs but as you can see it's almost self explanatory, the way zod is used to contruct types.
+
+you need an array of object?
+
+```typescript
+z.array(
+	z.object({
+		ability: z.object({
+			name: z.string(),
+		}),
+	})
+  ),
+```
+
+The last line is used to `infer` the type, if you see the `PokemonAPIResponse` already gives us a typed declaration of the `PokeRes` zod object.
+If you hover over it,
+
+<ImageInsert
+  src="/images/zod_inference.png"
+  width={645}
+  height={393}
+  alt="screenshot of hover over zod type inference."
+/>
+
+We can use that to ⭐parse⭐ the API response at runtime, and if our API response doesn't match the types we declared. We get a Zod error, which is predictable and easy to handle in comparison.
+
+Let's see an example of how we parse the API Response,
+
+```typescript
+import { PokemonAPIResponse } from '../../types/PokeAPITypes.ts';
+import axios from 'axios';
+import { z } from 'zod';
+
+export async function pokemonGetterFn(
+  pokemon: string
+): Promise<AxiosResponse<PokemonAPIResponse>> {
+  const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
+  let data = await axios.get(url);
+  try {
+    PokeRes.parse(data.data);
+  } catch (error: any) {
+    if (error instanceof z.ZodError) {
+      console.log(err.issues);
+    }
+    console.log(error.message);
+  }
+  return data;
+}
+```
+
+As you can see, in the aboove code snippet we parse the API response from the Pokemon API at runtime and also get nice error handling incase our API doesn't match the defined type.
+
+This gives us a nice defined control over what we are consuming from an API and also types and intellisense readily available in VSCode for the said API.
+
+If you want strict checking to consume the whole of the API response and not partially like we did now, you can add a `strict()` at the end of the `PokeRes` type.
+
+```typescript
+PokeRes.strict().parse(data.data);
+```
+
+This is how we type API responses in TypeScript, this gives us better control over the APIs we are consuming.
