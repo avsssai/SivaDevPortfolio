@@ -10,9 +10,9 @@ excerpt: Effective ways to type API responses.
 
 TypeScript introduces types into JavaScript (and more). So you can essentially define the shape of the input which was optional in JavaScript.
 
-Many developers jumped at this idea as it made the developer experience excellent and we are able to catch bugs before they expolode in production.
+Many developers jumped at this idea as it made the developer experience excellent and we are able to catch bugs before they explode in production.
 
-So in exchange for writing some type logic, you get a lot of predictability in exchange.
+So for writing some type logic, you get a lot of predictability in exchange.
 
 <ImageInsert
   src="/images/typescript_meme.png"
@@ -21,7 +21,9 @@ So in exchange for writing some type logic, you get a lot of predictability in e
   alt="A meme about typescript"
 />
 
-Typing inputs and outputs of functions and general code of which we know the input and output of is pretty standard, as we know the shape of those inputs and outputs?
+Typing inputs and outputs of functions and general code of which we know the input and output of is pretty standard, as we know the shape of those inputs and outputs.
+
+But how are we gonna type an API we get from an external source?
 
 For example, you need to type an API response which you are gonna get from a backend server.
 
@@ -89,7 +91,7 @@ This brings us to our second option, using a tool to ask us to do this.
 
 [Like QuickType](https://quicktype.io/)
 
-This is a tool which automatically generates API responses for us, so even if you have hundreds of entries in the JSON you can generate types for them in seconds.
+This is a tool which automatically generates types for API responses, so even if you have hundreds of entries in the JSON you can generate types for them in seconds.
 
 All nice and good, but there's some drawbacks of using this as well,
 
@@ -170,7 +172,7 @@ If you hover over it,
   alt="screenshot of hover over zod type inference."
 />
 
-We can use that to ⭐parse⭐ the API response at runtime, and if our API response doesn't match the types we declared. We get a Zod error, which is predictable and easy to handle in comparison.
+We can use that to ⭐parse⭐ the API response at runtime, and if our API response doesn't match the types we declared, we get a Zod error. Which is predictable and easy to handle in comparison.
 
 Let's see an example of how we parse the API Response,
 
@@ -196,9 +198,9 @@ export async function pokemonGetterFn(
 }
 ```
 
-As you can see, in the aboove code snippet we parse the API response from the Pokemon API at runtime and also get nice error handling incase our API doesn't match the defined type.
+As you can see, in the aboove code snippet we parse the API response from the Pokemon API at runtime and also get better error handling incase our API doesn't match the defined type.
 
-This gives us a nice defined control over what we are consuming from an API and also types and intellisense readily available in VSCode for the said API.
+This gives us a defined control over what we are consuming from an API and also types and intellisense readily available in VSCode for the said API.
 
 If you want strict checking to consume the whole of the API response and not partially like we did now, you can add a `strict()` at the end of the `PokeRes` type.
 
@@ -206,4 +208,4 @@ If you want strict checking to consume the whole of the API response and not par
 PokeRes.strict().parse(data.data);
 ```
 
-This is how we type API responses in TypeScript, this gives us better control over the APIs we are consuming.
+This is how we type API responses in typescript to ensure we get better control over the APIs we are consuming.
