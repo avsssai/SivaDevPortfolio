@@ -43,7 +43,17 @@ const Blog: NextPage<Props> = ({ posts }) => {
 };
 
 export const getStaticProps = async () => {
-  const posts = getAllPosts().map((post) => post.meta);
+  const posts = getAllPosts()
+    .map((post) => post.meta)
+    .sort((a, b) => {
+      if (new Date(a.date).getTime() > new Date(b.date).getTime()) {
+        return -1;
+      } else if (new Date(a.date).getTime() < new Date(b.date).getTime()) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
   //   return {
   //     props: {
   //       posts
