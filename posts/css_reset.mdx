@@ -1,0 +1,44 @@
+---
+title: CSS Reset
+tags:
+  - css
+  - TailwindCSS
+date: 2023-02-27
+publish: true
+excerpt: What is CSS Reset and why is it so important?
+---
+
+In simple terms,
+
+CSS reset is resetting the default values of CSS that are present on
+all elements which are defined on the DOM.
+
+Now this naturally begs the question, what are the defaults on an arbitrary HTML element defined on the DOM?
+
+The answer is same as almost all questions related to computer science in general... <i>it depends</i>
+
+...it depends on the HTML element we take into consideration,
+
+Let's look at some examples.
+
+Take the <InlineCode>h1</InlineCode> tag, it has a CSS default of <InlineCode>font-weight: bold</InlineCode>. This one is a very intuitive example and it kinda makes sense for the headings to be bold.
+
+Let's look at a contrived example to really understand why we need to do bother doing a css reset before starting to write any css at all.
+
+You may have noticed that whenever we add a header to a page we have a margin on the top and bottom automatically present.
+
+<StackBlitz src="https://stackblitz.com/edit/typescript-u1pe2x?embed=1&file=index.html" />
+
+If you take a look at the above StackBlitz code editor, we see that the <InlineCode>h1</InlineCode> in red has some space on the top and bottom of it, it is the margin which is by default present on a <InlineCode>h1</InlineCode> tag.
+
+So, for the second and third headers we have set <InlineCode>margin: 0</InlineCode> which overrides the browser default. You can see how both the headers have their margins overriden.
+
+There are so many defaults given by the browser on several elements which makes it hard to keep track of and also these defaults tend to rather give us a lot of uncertainity in our CSS.
+
+You can take a look of the all the defaults on HTML elements in this [article](https://www.dofactory.com/css/defaults).
+
+It is a good idea to have a standard set of resets on these defaults before starting a project and very smart people have already written those for us.
+
+A very famous one used by Twitter, Github, Medium, Bootstrap, CSS-Tricks, and others is [normalize.css](https://necolas.github.io/normalize.css/).
+
+Just drop in the [css code](https://necolas.github.io/normalize.css/latest/normalize.css) into your global CSS file before staring a new project and you should have all the css default reset and all the magically appearing margins and paddings should disappear letting us write predictable CSS code.

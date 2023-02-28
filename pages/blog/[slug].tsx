@@ -11,9 +11,11 @@ import Layout from '@/src/components/Layout';
 import TagsComponent from '@/src/components/Tags';
 import Date from '@/src/components/Date';
 import YouTube from '@/src/components/Youtube';
+import StackBlitz from '@/src/components/StackBlitz/StackBlitz';
 import Image from 'next/image';
 import Gif from '@/src/components/Gif';
 import ToolTip from '@/src/components/Tooltip/Tooltip';
+import InlineCode from '@/src/components/InlineCode/InlineCode';
 import Button from '@/src/components/Button/Button';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -151,7 +153,16 @@ export default function PostPage({ post }: { post: MDXPost }) {
           <BlogContent>
             <MDXRemote
               {...post.source}
-              components={{ YouTube, Image, Gif, ToolTip, Button, ImageInsert }}
+              components={{
+                YouTube,
+                Image,
+                Gif,
+                ToolTip,
+                Button,
+                ImageInsert,
+                InlineCode,
+                StackBlitz
+              }}
             />
           </BlogContent>
         </Content>
