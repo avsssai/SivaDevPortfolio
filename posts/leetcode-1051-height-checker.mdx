@@ -1,0 +1,46 @@
+---
+title: LeetCode 1051 - Height Checker
+tags:
+  - Sorting
+  - LeetCode
+date: 2023-06-14
+publish: true
+excerpt: LeetCode Problem 1051 - Height Checker - Sorting
+---
+
+## The question
+
+A school is trying to take an annual photo of all the students. The students are asked to stand in a single file line in non-decreasing order by height. Let this ordering be represented by the integer array expected where expected[i] is the expected height of the ith student in line.
+
+You are given an integer array heights representing the current order that the students are standing in. Each heights[i] is the height of the ith student in line (0-indexed).
+
+Return the number of indices where heights[i] != expected[i].
+
+## The challenge
+
+The array of elements "heights" is unsorted and we need to find the number of unsorted elements. That is, in comparison the number of unsorted elements is equal to the number of mismatches between the sorted and the unsorted arrays.
+
+## The Gotcha
+
+When we do sorting in an array using a sorting algorithm (for example bubble sort), we do in-place sorting and there is no way to compare the older unsorted array with the sorted one.
+
+This is the same for the sorting done via `Array.sort()` method. [Array Sort - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort).
+
+So, we make a copy of the array first, sort it and then compare it with the original unsorted array.
+
+## The code
+
+```TypeScript
+function heightChecker(heights: number[]): number {
+    let mismatch = 0
+    let copy = [...heights]
+    let sorted = copy.sort((a,b) => a - b)
+    for(let i=0; i<heights.length;i++) {
+        if(heights[i] !== sorted[i]) {
+            mismatch++
+        }
+    }
+    return mismatch
+};
+
+```
